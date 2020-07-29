@@ -30,7 +30,10 @@ namespace anonymous_method__delegates
                 Console.WriteLine(s.Contains(i.ToString()));
             };
             
-            contains(123, "four five six"); //anonymous method call
+            contains(123, "1 five six"); //anonymous method call
+
+
+
 
             Delegate d = contains;  //dynamic call
             d.DynamicInvoke(new object[] { 123, "four 123 five six" });
