@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace lambda
 {
+
+    //func, action- built in delegates
+    //func returns
+    //action returns void
+    //predicate- for linq- delegate returning values
+
+
     ///delgates
     delegate int CombineTwoInts(int x, int y);
     delegate double MultiplyNumbers(int a, int b);
@@ -30,7 +37,7 @@ namespace lambda
             }
 
 
-            //przypisanie- dwie metody
+            //przypisanie- dwie metody do wywołania
             //MyDelegate d = new MyDelegate(Sum);
             MyDelegate deletaTeSum = Sum;
 
@@ -60,7 +67,7 @@ namespace lambda
             lambda.DynamicInvoke(new object[] { 123, "four five six" });
 
 
-            //LAMBDA DELEGATE
+            //LAMBDA DELEGATES
             //  => GOES TO
             CombineTwoInts adder = (a, b) => { return a + b; };
             Console.WriteLine("lambda delegate:  " + adder(3, 5));
@@ -72,7 +79,7 @@ namespace lambda
 
 
 
-            //LAMBDA
+            //LAMBDA PREDICATE
             var greaterThan3 = new List<int> { 1, 2, 3, 4, 5, 6 }.Where(x => x > 3);
 
             foreach (int i in greaterThan3)
@@ -80,7 +87,9 @@ namespace lambda
 
 
 
-           
+           //Mosh lambda DELEGATE
+           Func<int, int> square = number => number * number;
+           Console.WriteLine(square(5));
 
             Console.ReadKey();
         }
