@@ -1,22 +1,19 @@
 ﻿using CompositeDesignPattern.Component;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompositeDesignPattern.Composite
 {
     public class Manager : IEmployee
     {
-        public string Name { get; set; }    //property
-        public string Department { get; set; }  //property
-        public List<IEmployee> SubOrdinates;    //LIST of components
+        public string Name { get; set; }
+        public string Department { get; set; }
+        public List<IEmployee> SubOrdinates;
 
-        public Manager(string name, string dept)    //constructor
+        public Manager(string name, string dept)
         {
-            this.Name = name;
-            this.Department = dept;
+            Name = name;
+            Department = dept;
             SubOrdinates = new List<IEmployee>();
         }
 
@@ -28,8 +25,8 @@ namespace CompositeDesignPattern.Composite
             Console.WriteLine(string.Format(
                 "{0}+ Name:{1}, Dept:{2} - Manager(Composite)",
                 new String('-', indentation),
-                this.Name.ToString(),
-                this.Department));
+                Name,
+                Department));
 
             foreach (IEmployee component in SubOrdinates)
             {

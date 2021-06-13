@@ -2,10 +2,6 @@
 using CompositeDesignPattern.Composite;
 using CompositeDesignPattern.Leaf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompositeDesignPattern
 {
@@ -20,13 +16,22 @@ namespace CompositeDesignPattern
             IEmployee Henry = new Employee("Henry", "HR");
 
             IEmployee James = new Manager("James", "IT")
-            { SubOrdinates = { John, Mike } };
+            {
+                SubOrdinates = { John, Mike }
+            };
+
             IEmployee Philip = new Manager("Philip", "HR")
-            { SubOrdinates = { Jason, Eric, Henry } };
+            {
+                SubOrdinates = { Jason, Eric, Henry }
+            };
 
             IEmployee Bob = new Manager("Bob", "Head")
-            { SubOrdinates = { James, Philip } };
-            Bob.GetDetails(0);
+            {
+                SubOrdinates = { James, Philip }
+            };
+
+
+            Bob.GetDetails(1);
             Console.ReadLine();
         }
     }

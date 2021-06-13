@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Singleton;
 
-namespace Singleton
+namespace SingletonDemo
 {
     class Program
     {
         static void Main(string[] args)
         {
+            var config = Config.GetConfig();
         }
     }
 }

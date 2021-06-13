@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8BFAFD0D-9F25-43E7-9BA6-91A01710DA2C}</ProjectGuid>
+    <ProjectGuid>{F52D05E2-8661-4EAA-B0FD-E3CA6A5557F6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Singleton</RootNamespace>
-    <AssemblyName>Singleton</AssemblyName>
+    <RootNamespace>_1.Builder</RootNamespace>
+    <AssemblyName>_1.Builder</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,12 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete Builders\CarManualBuilder.cs" />
+    <Compile Include="Product\Car.cs" />
+    <Compile Include="Interface\ICarTypeBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Singleton.cs" />
+    <Compile Include="Concrete Builders\CarBuilder.cs" />
+    <Compile Include="Director\Director.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
