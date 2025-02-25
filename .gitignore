@@ -1,4 +1,5 @@
 bin/
+obj/
 debug/
 .vs/
 Design Patterns/Creacional/1. Builder/3. Car example/1. Builder.sln
