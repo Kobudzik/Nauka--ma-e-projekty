@@ -6,21 +6,18 @@ namespace FactoryMethod;
 
 public static class Program
 {
-    public static Pizza PizzaFactory(PizzaType pizzaType)   // Factory METHOD - creator
+    public static Pizza PizzaFactory(PizzaType pizzaType)
     {
         switch (pizzaType)
         {
             case PizzaType.HamMushroom:
-            return new HamAndMushroomPizza();
+                return new HamAndMushroomPizza();
 
             case PizzaType.Deluxe:
-            return new DeluxePizza();
+                return new DeluxePizza();
 
             case PizzaType.Hawaiian:
-            return new HawaiianPizza();
-
-            default:
-            break;
+                return new HawaiianPizza();
         }
 
         throw new NotSupportedException("The pizza type " + pizzaType.ToString() + " is not recognized.");

@@ -11,8 +11,6 @@ public class Wolf : AbstractCarnivore
     public override void Eat(AbstractHerbivore h)
     {
         // Eat Bison
-
-        Console.WriteLine(GetType().Name +
-          " eats " + h.GetType().Name);
+        Console.WriteLine(GetType().Name + " eats " + h.GetType().Name);
     }
 }

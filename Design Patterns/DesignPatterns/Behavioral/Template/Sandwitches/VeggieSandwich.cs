@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Template;
+namespace Template.Hoagies;
 
-class VeggieHoagie : Hoagie
+class VeggieSandwich : Sandwich
 {
     readonly string[] veggiesUsed = ["Lettuce", "Tomatoes", "Onions", "Sweet Peppers"];
     readonly string[] condimentsUsed = ["Oil", "Vinegar"];

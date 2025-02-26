@@ -12,10 +12,5 @@ public static class Program
         Button button = factory.CreateButton();
         button.Paint();
         Console.ReadLine();
-
-        // Wyświetlony zostanie tekst:
-        //   "Przycisk WinButton"
-        // lub:
-        //   "Przycisk OSXButton"
     }
 }

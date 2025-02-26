@@ -1,13 +1,9 @@
 ﻿using AbstractFactoryOS.AbstractProduct;
 using AbstractFactoryOS.ConcreteProduct;
-using AbstractFactoryOS.Factories;
 
-namespace AbstractFactoryOS.ConcreteFactory;
+namespace AbstractFactoryOS.Factories;
 
 public class OSXFactory : AbstractGUIFactory
 {
-    public override Button CreateButton()
-    {
-        return new OSXButton();
-    }
+    public override Button CreateButton() => new OSXButton();
 }

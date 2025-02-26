@@ -4,11 +4,6 @@ namespace Strategy;
 
 public class Animal
 {
-    private string _name;
-    private double _height;
-    private int _weight;
-    private string _favFood;
-    private double _speed;
     private string _sound;
 
     // Instead of using an interface in a traditional way
@@ -22,35 +17,10 @@ public class Animal
     // an ability through inheritance the class is composed
     // with Objects with the right ability
 
-    // Composition allows you to change the capabilities of 
+    // Composition allows you to change the capabilities of
     // objects at run time!
 
-    public IFlys flyingType;
-
-    public void SetName(string newName) { _name = newName; }
-    public string GetName() { return _name; }
-
-    public void SetHeight(double newHeight) { _height = newHeight; }
-    public double GetHeight() { return _height; }
-
-    public void SetWeight(int newWeight)
-    {
-        if (newWeight > 0)
-        {
-            _weight = newWeight;
-        }
-        else
-        {
-            Console.WriteLine("Weight must be bigger than 0");
-        }
-    }
-    public double GetWeight() => _weight;
-
-    public void SetFavFood(string newFavFood) => _favFood = newFavFood;
-    public string GetFavFood() => _favFood;
-
-    public void SetSpeed(double newSpeed) => _speed = newSpeed;
-    public double GetSpeed() => _speed;
+    public IFlyingAnimal flyingType;
 
     public void SetSound(string newSound) => _sound = newSound;
     public string GetSound() => _sound;
@@ -68,16 +38,10 @@ public class Animal
 
     // Animal pushes off the responsibility for flying to flyingType
 
-    public string TryToFly()
-    {
-        return flyingType.Fly();
-    }
+    public string TryToFly() => flyingType.Fly();
 
     // If you want to be able to change the flyingType dynamically
     // add the following method
 
-    public void SetFlyingAbility(IFlys newFlyType)
-    {
-        flyingType = newFlyType;
-    }
+    public void SetFlyingAbility(IFlyingAnimal newFlyType) => flyingType = newFlyType;
 }

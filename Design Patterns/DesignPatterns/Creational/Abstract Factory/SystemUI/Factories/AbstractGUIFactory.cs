@@ -6,25 +6,14 @@ namespace AbstractFactoryOS.Factories;
 
 public abstract class AbstractGUIFactory
 {
-    /// <summary>
-    /// getFactory returns concrete Factory,
-    ///instead parameter abstract Factory can get OS_Type from outer method
-    /// </summary>
-    /// <param name="type">Operating System</param>
-    /// <returns></returns>
     public static AbstractGUIFactory GetFactory(OS_TYPE type)
     {
-        switch (type)
+        return type switch
         {
-            case OS_TYPE.Windows:
-            return new WinFactory();
-
-            case OS_TYPE.OsX:
-            return new OSXFactory();
-
-            default:
-            throw new NotImplementedException();
-        }
+            OS_TYPE.Windows => new WinFactory(),
+            OS_TYPE.OsX => new OSXFactory(),
+            _ => throw new NotImplementedException(),
+        };
     }
 
     public abstract Button CreateButton();

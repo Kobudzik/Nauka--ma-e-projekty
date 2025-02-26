@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Template;
+namespace Template.Hoagies;
 
-public class ItalianHoagie : Hoagie
+public class ItalianSandwich : Sandwich
 {
     private readonly string[] meatUsed = ["Salami", "Pepperoni", "Capicola Ham"];
     private readonly string[] cheeseUsed = ["Provplone"];

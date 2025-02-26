@@ -1,4 +1,6 @@
-﻿namespace Observer;
+﻿using Observer.Observers;
+
+namespace Observer.Subjects;
 
 public interface ISubject
 {

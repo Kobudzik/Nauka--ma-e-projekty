@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Template;
+namespace Template.Hoagies;
 
-public abstract class Hoagie
+public abstract class Sandwich
 {
     public void MakeSandwitch()
     {

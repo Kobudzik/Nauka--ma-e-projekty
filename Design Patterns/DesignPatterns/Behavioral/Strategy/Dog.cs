@@ -16,7 +16,7 @@ public class Dog : Animal
         // We set the Flys interface polymorphically
         // This sets the behavior as a non-flying Animal
 
-        flyingType = new CantFly();
+        flyingType = new NotFlyingAnimal();
     }
 
     /* BAD

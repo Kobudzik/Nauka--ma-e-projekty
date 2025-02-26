@@ -1,6 +1,6 @@
 ﻿namespace Momento;
 
-public class CustomerBetterMemento(
+public class MomentoHandler(
     int id,
     string name,
     string address,
@@ -39,12 +39,11 @@ public class CustomerBetterMemento(
         PostalCode = _customerMemento.PostalCode;
     }
 
-    // This is one of the rare cases where you might declare more than one class in a file.
-    // The CustomerMemento class will never be used any place, other than in the Customer class.
-    // So, you can make it a private class inside the one class where it's used.
-    // Or, you could put it in its own file, and declare it an internal or public class.
-    private class CustomerMemento(string name, string address,
-        string city, string stateProvince, string postalCode)
+    // This is one of the rare cases where you might declare more than one class in a file
+    // The CustomerMemento class will never be used any place, other than in the Customer class
+    // So, you can make it a private class inside the one class where it's used
+    // Or, you could put it in its own file, and declare it an internal or public class
+    private class CustomerMemento(string name, string address, string city, string stateProvince, string postalCode)
     {
         public string Name { get; } = name;
         public string Address { get; } = address;

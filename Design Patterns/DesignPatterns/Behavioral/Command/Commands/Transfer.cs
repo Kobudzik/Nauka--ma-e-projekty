@@ -14,7 +14,6 @@ public class Transfer(int id, Account fromAccount, Account toAccount, decimal am
         {
             fromAccount.Balance -= amount;
             toAccount.Balance += amount;
-
             Status = CommandState.ExecuteSucceeded;
         }
         else
@@ -31,7 +30,6 @@ public class Transfer(int id, Account fromAccount, Account toAccount, decimal am
         {
             toAccount.Balance -= amount;
             fromAccount.Balance += amount;
-
             Status = CommandState.UndoSucceeded;
         }
         else

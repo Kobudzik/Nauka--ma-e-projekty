@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mediator.ConcreteComponents;
+namespace Mediator.Components;
 
 public class Component2 : IComponent
 {

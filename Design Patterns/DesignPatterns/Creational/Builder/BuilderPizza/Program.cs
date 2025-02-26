@@ -12,11 +12,15 @@ static class Program
         {
             PizzaBuilder = new HawaiianPizzaBuilder()
         };
-        Client.BuildAndDisplayPizza(waiter);
+
+        waiter.ConstructPizza();
+        Console.WriteLine(waiter.Pizza);
+
         Waiter waiter2 = new();
 
         waiter.PizzaBuilder = new SpicyPizzaBuilder();
-        Client.BuildAndDisplayPizza(waiter);
+        waiter.ConstructPizza();
+        Console.WriteLine(waiter.Pizza);
 
         Console.ReadKey();
     }

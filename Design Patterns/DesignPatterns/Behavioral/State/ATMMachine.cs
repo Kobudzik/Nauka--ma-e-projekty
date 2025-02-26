@@ -4,15 +4,15 @@ namespace State;
 
 public class ATMMachine
 {
-    readonly IATMState hasCard;
-    readonly IATMState noCard;
-    readonly IATMState hasCorrectPin;
-    readonly IATMState atmOutOfMoney;
+    private readonly IATMState hasCard;
+    private readonly IATMState noCard;
+    private readonly IATMState hasCorrectPin;
+    private readonly IATMState atmOutOfMoney;
 
-    IATMState currentAtmState;
+    private IATMState _currentAtmState;
 
     public int cashInMachine = 2000;
-    public bool correctPinEntered = false;
+    public bool correctPinEntered;
 
     public ATMMachine()
     {
@@ -21,47 +21,28 @@ public class ATMMachine
         hasCorrectPin = new HasPin(this);
         atmOutOfMoney = new NoCash(this);
 
-        //default state
-        currentAtmState = noCard;
+        _currentAtmState = noCard; //default state
 
         if (cashInMachine < 0)
         {
-            currentAtmState = atmOutOfMoney;
+            _currentAtmState = atmOutOfMoney;
         }
     }
 
-    public void SetATMState(IATMState newATMState)
-    {
-        currentAtmState = newATMState;
-    }
+    public void SetATMState(IATMState newATMState) => _currentAtmState = newATMState;
 
-    public void SetCashInMachine(int newCashInMachine)
-    {
-        cashInMachine = newCashInMachine;
-    }
+    public void SetCashInMachine(int newCashInMachine) => cashInMachine = newCashInMachine;
 
-    public void InsertCard()
-    {
-        currentAtmState.InsertCard();
-    }
+    public void InsertCard() => _currentAtmState.InsertCard();
 
-    public void EjectCard()
-    {
-        currentAtmState.EjectCard();
-    }
+    public void EjectCard() => _currentAtmState.EjectCard();
 
-    public void RequestCash(int cashToWithdraw)
-    {
-        currentAtmState.RequestCash(cashToWithdraw);
-    }
+    public void RequestCash(int cashToWithdraw) => _currentAtmState.RequestCash(cashToWithdraw);
 
-    public void InsertPin(int pinEntered)
-    {
-        currentAtmState.InsertPin(pinEntered);
-    }
+    public void InsertPin(int pinEntered) => _currentAtmState.InsertPin(pinEntered);
 
-    public IATMState GetYesCardState() { return hasCard; }
-    public IATMState GetNoCardState() { return noCard; }
-    public IATMState GetHasPin() { return hasCorrectPin; }
-    public IATMState GetNoCashState() { return atmOutOfMoney; }
+    public IATMState GetHasCardState() => hasCard;
+    public IATMState GetNoCardState() => noCard;
+    public IATMState GetHasPin() => hasCorrectPin;
+    public IATMState GetNoCashState() => atmOutOfMoney;
 }

@@ -1,10 +1,10 @@
-﻿using BuilderCar.ConcreteBuilders;
+﻿using BuilderCar.Builders;
 using BuilderCar.Directors;
 using BuilderCar.Product;
 using System;
 namespace BuilderCar;
 
-class Program
+static class Program
 {
     public static void Main()
     {

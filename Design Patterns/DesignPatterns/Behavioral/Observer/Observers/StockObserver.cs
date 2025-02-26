@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Observer.Subjects;
+using System;
 
-namespace Observer;
+namespace Observer.Observers;
 
 public class StockObserver : IObserver
 {
@@ -45,6 +46,8 @@ public class StockObserver : IObserver
 
     public void PrintThePrices()
     {
-        Console.Write(observerID + "\nIBM: " + ibmPrice + "\nAAPL: " + applePrice + "\nGOOG: " + googlePrice + "\n");
+        Console.Write(
+            observerID + "\nIBM: " + ibmPrice + "\nAAPL: " + applePrice + "\nGOOG: " + googlePrice + "\n"
+        );
     }
 }

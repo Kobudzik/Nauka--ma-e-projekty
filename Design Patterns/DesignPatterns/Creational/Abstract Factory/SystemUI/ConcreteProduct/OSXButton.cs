@@ -7,6 +7,6 @@ public class OSXButton : Button
 {
     public override void Paint()
     {
-        Console.WriteLine("Przycisk OSXButton");
+        Console.WriteLine("OSXButton");
     }
 }

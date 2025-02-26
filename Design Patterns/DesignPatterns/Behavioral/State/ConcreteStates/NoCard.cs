@@ -9,7 +9,7 @@ public class NoCard(ATMMachine newATMMachine) : IATMState
     public void InsertCard()
     {
         Console.WriteLine("Please enter your pin");
-        atmMachine.SetATMState(atmMachine.GetYesCardState());
+        atmMachine.SetATMState(atmMachine.GetHasCardState());
     }
 
     public void EjectCard()

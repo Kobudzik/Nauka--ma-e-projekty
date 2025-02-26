@@ -1,29 +1,30 @@
 ﻿using System;
 
-namespace ChainOfResponsibility;
+namespace ChainOfResponsibility.Chains;
 
 internal class AddNumbers : IChain
 {
-    private IChain nextInChain;
+    private const string _addOperation = "add";
+    private IChain _next;
 
     // Defines the next Object to receive the
     // data if this one can't use it
     public void SetNextChain(IChain nextChain)
     {
-        nextInChain = nextChain;
+        _next = nextChain;
     }
 
     // Tries to calculate the data, or passes it
     // to the Object defined in method setNextChain()
-    public void Calculate(Numbers request)
+    public void Calculate(CalculationRequest request)
     {
-        if (request.GetCalcWanted() == "add")
+        if (request.GetCalcWanted() == _addOperation)
         {
             Console.WriteLine(request.GetNumber1() + " + " + request.GetNumber2() + " = " + (request.GetNumber1() + request.GetNumber2()));
         }
         else
         {
-            nextInChain.Calculate(request);
+            _next.Calculate(request);
         }
     }
 }

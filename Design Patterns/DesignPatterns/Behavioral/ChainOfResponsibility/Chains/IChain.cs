@@ -1,4 +1,4 @@
-﻿namespace ChainOfResponsibility;
+﻿namespace ChainOfResponsibility.Chains;
 
 interface IChain
 {
@@ -8,5 +8,5 @@ interface IChain
 
     // Either solves the problem or passes the data
     // to the next Object in the chain
-    void Calculate(Numbers request);
+    void Calculate(CalculationRequest request);
 }

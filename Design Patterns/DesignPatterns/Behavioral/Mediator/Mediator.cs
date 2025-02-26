@@ -1,4 +1,6 @@
-﻿namespace Mediator;
+﻿using Mediator.Components;
+
+namespace Mediator;
 
 // Mediates the common tasks
 public class Mediator

@@ -1,6 +1,6 @@
 ﻿namespace BuilderCar.Product;
 
-public class Car //FRAME for car objects- Product
+public class Car
 {
     public string FuelType { get; set; }
     public int WheelNumber { get; set; }

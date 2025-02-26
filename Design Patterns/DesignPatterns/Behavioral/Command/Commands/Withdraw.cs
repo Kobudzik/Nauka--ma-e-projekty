@@ -13,7 +13,6 @@ public class Withdraw(int id, Account account, decimal amount) : ITransaction
         if (account.Balance >= amount)
         {
             account.Balance -= amount;
-
             Status = CommandState.ExecuteSucceeded;
         }
         else
@@ -25,7 +24,6 @@ public class Withdraw(int id, Account account, decimal amount) : ITransaction
     public void Undo()
     {
         account.Balance += amount;
-
         Status = CommandState.UndoSucceeded;
     }
 }

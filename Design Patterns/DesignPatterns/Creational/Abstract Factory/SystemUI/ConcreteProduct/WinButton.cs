@@ -7,6 +7,6 @@ public class WinButton : Button
 {
     public override void Paint()
     {
-        Console.WriteLine("Przycisk WinButton");
+        Console.WriteLine("WinButton");
     }
 }

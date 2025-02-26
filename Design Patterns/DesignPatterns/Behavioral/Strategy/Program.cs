@@ -14,7 +14,7 @@ static class Program
         Console.WriteLine("Bird: " + tweety.TryToFly());
 
         // This allows dynamic changes for flyingType
-        sparky.SetFlyingAbility(new ItFlys());
+        sparky.SetFlyingAbility(new FlyingAnimal());
 
         Console.WriteLine("Dog: " + sparky.TryToFly());
     }

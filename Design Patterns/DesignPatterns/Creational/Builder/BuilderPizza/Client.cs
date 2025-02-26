@@ -7,10 +7,6 @@ namespace BuilderPizza;
 /// </summary>
 public static class Client
 {
-    /// <summary>
-    /// Simple method
-    /// </summary>
-    /// <param name="waiter">Returns waiter</param>
     public static void BuildAndDisplayPizza(Waiter waiter)
     {
         waiter.ConstructPizza();

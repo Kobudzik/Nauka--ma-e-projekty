@@ -19,7 +19,6 @@ public class Deposit(int id, Account account, decimal amount) : ITransaction
         if (account.Balance >= amount)
         {
             account.Balance -= amount;
-
             Status = CommandState.UndoSucceeded;
         }
         else

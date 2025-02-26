@@ -1,4 +1,4 @@
-﻿namespace Mediator;
+﻿namespace Mediator.Components;
 
 public interface IComponent
 {

@@ -10,25 +10,17 @@
 
 // I'm decoupling : encapsulating the concept that varies
 
-public interface IFlys
+public interface IFlyingAnimal
 {
     string Fly();
 }
 
-// Class used if the Animal can fly
-class ItFlys : IFlys
+class FlyingAnimal : IFlyingAnimal
 {
-    public string Fly()
-    {
-        return "Flying High";
-    }
+    public string Fly() => "Flying High";
 }
 
-//Class used if the Animal can't fly
-class CantFly : IFlys
+class NotFlyingAnimal : IFlyingAnimal
 {
-    public string Fly()
-    {
-        return "I can't fly";
-    }
+    public string Fly() => "I can't fly";
 }

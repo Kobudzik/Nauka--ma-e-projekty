@@ -1,4 +1,5 @@
 ﻿using System;
+using Template.Hoagies;
 
 namespace Template;
 
@@ -6,8 +7,8 @@ static class Program
 {
     static void Main()
     {
-        Hoagie cust12Hoohie = new ItalianHoagie();
-        cust12Hoohie.MakeSandwitch();
+        var hoagie = new ItalianSandwich();
+        hoagie.MakeSandwitch();
         Console.Read();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace BuilderCar.Interface;
+﻿namespace BuilderCar.Builders;
 
 public interface ICarTypeBuilder
 {
