@@ -1,18 +1,19 @@
-﻿namespace DesignPatterns.Builder_Pizza
+﻿using BuilderPizza.Director;
+
+namespace BuilderPizza;
+
+/// <summary>
+/// pass that class a waiter and we will use him to construct pizza and write it
+/// </summary>
+public static class Client
 {
     /// <summary>
-    /// pass that class a waiter and we will use him to construct pizza and write it
+    /// Simple method
     /// </summary>
-    public static class Client
+    /// <param name="waiter">Returns waiter</param>
+    public static void BuildAndDisplayPizza(Waiter waiter)
     {
-        /// <summary>
-        /// Simple method
-        /// </summary>
-        /// <param name="waiter">Returns waiter</param>
-        public static void BuildAndDisplayPizza(Waiter waiter)
-        {
-            waiter.ConstructPizza();
-            System.Console.WriteLine(waiter.Pizza);
-        }
+        waiter.ConstructPizza();
+        System.Console.WriteLine(waiter.Pizza);
     }
 }

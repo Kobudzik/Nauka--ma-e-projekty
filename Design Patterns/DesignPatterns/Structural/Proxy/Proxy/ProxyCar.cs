@@ -1,25 +1,19 @@
-﻿using System;
+﻿using Proxy.Object;
+using Proxy.RealObject;
+using System;
 
-namespace DesignPatterns.Proxy
+namespace Proxy.Proxy;
+
+public class ProxyCar(Driver driver) : ICar
 {
-    // Proxy Object
-    public class ProxyCar : ICar
+    private readonly Driver _driver = driver;
+    private readonly ICar _realCar = new Car();
+
+    public void DriveCar()
     {
-        private readonly Driver _driver;
-        private readonly ICar _realCar;
-
-        public ProxyCar(Driver driver)  //konstruktor
-        {
-            this._driver = driver;
-            this._realCar = new Car();
-        }
-
-        public void DriveCar()
-        {
-            if (_driver.Age < 16)
-                Console.WriteLine("Sorry, the driver is too young to drive.");
-            else
-                this._realCar.DriveCar();
-        }
+        if (_driver.Age < 16)
+            Console.WriteLine("Sorry, the driver is too young to drive.");
+        else
+            _realCar.DriveCar();
     }
 }

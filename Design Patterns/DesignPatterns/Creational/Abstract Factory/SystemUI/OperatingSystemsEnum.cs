@@ -1,8 +1,7 @@
-﻿namespace DesignPatterns_AbstractFactory_OS
+﻿namespace AbstractFactoryOS;
+
+public enum OS_TYPE
 {
-    public enum OS_TYPE
-    {
-        Windows,
-        OsX
-    }
+    Windows,
+    OsX
 }

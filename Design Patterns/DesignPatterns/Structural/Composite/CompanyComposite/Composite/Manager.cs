@@ -1,36 +1,29 @@
-﻿using DesignPatterns.Composite.Component;
+﻿using CompanyComposite.Component;
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatterns.Composite.Composite
+namespace CompanyComposite.Composite;
+
+public class Manager(string name, string department) : IEmployee
 {
-    public class Manager : IEmployee
+    public string Name { get; set; } = name;
+    public string Department { get; set; } = department;
+    public List<IEmployee> SubOrdinates = [];
+
+    public void GetDetails(int indentation)
     {
-        public string Name { get; set; }
-        public string Department { get; set; }
-        public List<IEmployee> SubOrdinates;
+        Console.WriteLine();
 
-        public Manager(string name, string dept)
+        Console.WriteLine(string.Format(
+            "{0}+ Name:{1}, Dept:{2} - Manager(Composite)",
+            new string('-', indentation),
+            Name,
+            Department)
+        );
+
+        foreach (IEmployee component in SubOrdinates)
         {
-            Name = name;
-            Department = dept;
-            SubOrdinates = new List<IEmployee>();
-        }
-
-        public void GetDetails(int indentation)
-        {
-            Console.WriteLine();
-
-            Console.WriteLine(string.Format(
-                "{0}+ Name:{1}, Dept:{2} - Manager(Composite)",
-                new String('-', indentation),
-                Name,
-                Department));
-
-            foreach (IEmployee component in SubOrdinates)
-            {
-                component.GetDetails(indentation + 1);
-            }
+            component.GetDetails(indentation + 1);
         }
     }
 }

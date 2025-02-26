@@ -1,25 +1,24 @@
 ﻿using System;
 
-namespace FluentInterface
+namespace FluentInterface;
+
+internal class Program
 {
-    internal class Program
+    private static void Main()
     {
-        private static void Main()
-        {
-            FluentEmployee obj = new();
+        FluentEmployee obj = new();
 
-            obj.NameOfTheEmployee("Anurag Mohanty")
-                    .Born("10/10/1992")
-                    .WorkingOn("IT")
-                    .StaysAt("Mumbai-India");
+        obj.NameOfTheEmployee("Anurag Mohanty")
+                .Born("10/10/1992")
+                .WorkingOn("IT")
+                .StaysAt("Mumbai-India");
 
-            FluentEmployee konrad = new();
+        FluentEmployee someEmploye = new();
 
-            konrad.NameOfTheEmployee("Konrad")
-                .Born("12/12/12/")
-                .StaysAt("Home");
+        someEmploye.NameOfTheEmployee("Konrad")
+            .Born("12/12/12/")
+            .StaysAt("Home");
 
-            Console.Read();
-        }
+        Console.Read();
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using AbstractFactoryOS.AbstractProduct;
+using System;
 
-namespace DesignPatterns_AbstractFactory_OS
+namespace AbstractFactoryOS.ConcreteProduct;
+
+public class WinButton : Button
 {
-    public class WinButton : Button
+    public override void Paint()
     {
-        public override void Paint()
-        {
-            Console.WriteLine("Przycisk WinButton");
-        }
+        Console.WriteLine("Przycisk WinButton");
     }
 }

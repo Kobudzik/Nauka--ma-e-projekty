@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Observer
+﻿namespace Observer;
+
+public interface IObserver
 {
-    public interface IObserver
-    {
-        void Update(double ibmPrice, double aaplPrice, double googPrice);
-    }
+    void Update(double ibmPrice, double applePrice, double googlePrice);
 }

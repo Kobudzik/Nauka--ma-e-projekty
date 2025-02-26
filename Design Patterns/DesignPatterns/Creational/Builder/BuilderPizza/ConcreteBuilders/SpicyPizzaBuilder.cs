@@ -1,10 +1,10 @@
-﻿namespace DesignPatterns.Builder_Pizza
+﻿using BuilderPizza.AbstractBuilder;
+
+namespace BuilderPizza.ConcreteBuilders;
+
+public class SpicyPizzaBuilder : PizzaBuilder
 {
-    public class SpicyPizzaBuilder : PizzaBuilder
-    {
-        //Concrete Builder
-        public override void BuildDough() { pizza.Dough = "pan baked"; }
-        public override void BuildSauce() { pizza.Sauce = "hot"; }
-        public override void BuildTopping() { pizza.Topping = "pepparoni+salami"; }
-    }
+    public override void BuildDough() { Pizza.Dough = "pan baked"; }
+    public override void BuildSauce() { Pizza.Sauce = "hot"; }
+    public override void BuildTopping() { Pizza.Topping = "pepparoni+salami"; }
 }

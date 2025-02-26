@@ -1,70 +1,69 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 
-namespace MVVM.Model
+namespace MVVM.Model;
+
+public class AccountModel : INotifyPropertyChanged
 {
-    public class AccountModel : INotifyPropertyChanged
+    private string _password;
+    private string _validationMessage;
+
+    public string Name { get; set; }
+
+    public string Password
     {
-        private string _password;
-        private string _validationMessage;
-
-        public string Name { get; set; }
-
-        public string Password
+        get { return _password; }
+        set
         {
-            get { return _password; }
-            set
-            {
-                _password = value;
+            _password = value;
 
-                OnPropertyChanged(nameof(Password));
-            }
+            OnPropertyChanged(nameof(Password));
         }
+    }
 
-        public string ValidationMessage
+    public string ValidationMessage
+    {
+        get { return _validationMessage; }
+        set
         {
-            get { return _validationMessage; }
-            set
-            {
-                _validationMessage = value;
+            _validationMessage = value;
 
-                OnPropertyChanged(nameof(ValidationMessage));
-            }
+            OnPropertyChanged(nameof(ValidationMessage));
         }
+    }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler PropertyChanged;
 
-        public void ValidatePassword()
+    public void ValidatePassword()
+    {
+        if (Password.Trim().Length < 8)
         {
-            if (Password.Trim().Length < 8)
-            {
-                ValidationMessage = "Password must be at least eight characters long";
-            }
-            else if (Password.Trim().Length > 20)
-            {
-                ValidationMessage = "Password cannot be more than twenty characters long";
-            }
-            else if (!Password.Any(char.IsUpper))
-            {
-                ValidationMessage = "Password must contain at least one upper-case character";
-            }
-            else if (!Password.Any(char.IsLower))
-            {
-                ValidationMessage = "Password must contain at least one lower-case character";
-            }
-            else if (!Password.Any(char.IsNumber))
-            {
-                ValidationMessage = "Password must contain at least one number";
-            }
-            else
-            {
-                ValidationMessage = "Password is secure";
-            }
+            ValidationMessage = "Password must be at least eight characters long";
         }
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        else if (Password.Trim().Length > 20)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ValidationMessage = "Password cannot be more than twenty characters long";
         }
+        else if (!Password.Any(char.IsUpper))
+        {
+            ValidationMessage = "Password must contain at least one upper-case character";
+        }
+        else if (!Password.Any(char.IsLower))
+        {
+            ValidationMessage = "Password must contain at least one lower-case character";
+        }
+        else if (!Password.Any(char.IsNumber))
+        {
+            ValidationMessage = "Password must contain at least one number";
+        }
+        else
+        {
+            ValidationMessage = "Password is secure";
+        }
+    }
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

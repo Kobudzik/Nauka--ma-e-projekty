@@ -1,16 +1,15 @@
-﻿namespace DesignPatterns.Strategy
+﻿namespace Strategy;
+
+public class Bird : Animal
 {
-    public class Bird : Animal
+    // The constructor initializes all objects
+
+    public Bird()
     {
-        // The constructor initializes all objects
+        SetSound("Tweet");
 
-        public Bird()
-        {
-            SetSound("Tweet");
-
-            // We set the Flys interface polymorphically
-            // This sets the behavior as a flying Animal
-            flyingType = new ItFlys();
-        }
+        // We set the Flys interface polymorphically
+        // This sets the behavior as a flying Animal
+        flyingType = new ItFlys();
     }
 }

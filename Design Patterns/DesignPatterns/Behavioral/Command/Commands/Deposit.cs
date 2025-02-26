@@ -1,46 +1,30 @@
 ﻿using System;
 
-namespace DesignPatterns.Command
+namespace Command.Commands;
+
+public class Deposit(int id, Account account, decimal amount) : ITransaction
 {
-    public class Deposit : ITransaction
+    public int Id { get; set; } = id;
+    public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+    public CommandState Status { get; set; } = CommandState.Unprocessed;
+
+    public void Execute()
     {
-        private readonly Account _account;
-        private readonly decimal _amount;
+        account.Balance += amount;
+        Status = CommandState.ExecuteSucceeded;
+    }
 
-        public int ID { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public CommandState Status { get; set; }
-
-        public Deposit(int id, Account account, decimal amount)
+    public void Undo()
+    {
+        if (account.Balance >= amount)
         {
-            ID = id;
-            CreatedOn = DateTime.UtcNow;
+            account.Balance -= amount;
 
-            _account = account;
-            _amount = amount;
-
-            Status = CommandState.Unprocessed;
+            Status = CommandState.UndoSucceeded;
         }
-
-        public void Execute()
+        else
         {
-            _account.Balance += _amount;
-
-            Status = CommandState.ExecuteSucceeded;
-        }
-
-        public void Undo()
-        {
-            if (_account.Balance >= _amount)
-            {
-                _account.Balance -= _amount;
-
-                Status = CommandState.UndoSucceeded;
-            }
-            else
-            {
-                Status = CommandState.UndoFailed;
-            }
+            Status = CommandState.UndoFailed;
         }
     }
 }

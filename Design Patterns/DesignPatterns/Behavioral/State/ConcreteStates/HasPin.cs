@@ -1,53 +1,47 @@
 ﻿using System;
 
-namespace DesignPatterns.State
+namespace State.ConcreteStates;
+
+public class HasPin(ATMMachine newATMMachine) : IATMState
 {
-    public class HasPin : IATMState
+    readonly ATMMachine atmMachine = newATMMachine;
+
+    public void InsertCard()
     {
-        readonly ATMMachine atmMachine;
+        Console.WriteLine("You already entered a card");
+    }
 
-        public HasPin(ATMMachine newATMMachine)
-        {
-            atmMachine = newATMMachine;
-        }
+    public void InsertPin(int pinEntered)
+    {
+        Console.WriteLine("You already entered a PIN");
+    }
 
-        public void InsertCard()
-        {
-            Console.WriteLine("You already entered a card");
-        }
+    public void EjectCard()
+    {
+        Console.WriteLine("Your card is ejected");
+        atmMachine.SetATMState(atmMachine.GetNoCardState());
+    }
 
-        public void EjectCard()
+    public void RequestCash(int cashToWithdraw)
+    {
+        if (cashToWithdraw > atmMachine.cashInMachine)
         {
+            Console.WriteLine("You don't have that much cash available");
             Console.WriteLine("Your card is ejected");
             atmMachine.SetATMState(atmMachine.GetNoCardState());
         }
-
-        public void RequestCash(int cashToWithdraw)
+        else
         {
-            if (cashToWithdraw > atmMachine.cashInMachine)
+            Console.WriteLine(cashToWithdraw + " is provided by the machine");
+            atmMachine.SetCashInMachine(atmMachine.cashInMachine - cashToWithdraw);
+
+            Console.WriteLine("Your card is ejected");
+            atmMachine.SetATMState(atmMachine.GetNoCardState());
+
+            if (atmMachine.cashInMachine <= 0)
             {
-                Console.WriteLine("You don't have that much cash available");
-                Console.WriteLine("Your card is ejected");
-                atmMachine.SetATMState(atmMachine.GetNoCardState());
+                atmMachine.SetATMState(atmMachine.GetNoCashState());
             }
-            else
-            {
-                Console.WriteLine(cashToWithdraw + " is provided by the machine");
-                atmMachine.SetCashInMachine(atmMachine.cashInMachine - cashToWithdraw);
-
-                Console.WriteLine("Your card is ejected");
-                atmMachine.SetATMState(atmMachine.GetNoCardState());
-
-                if (atmMachine.cashInMachine <= 0)
-                {
-                    atmMachine.SetATMState(atmMachine.GetNoCashState());
-                }
-            }
-        }
-
-        public void InsertPin(int pinEntered)
-        {
-            Console.WriteLine("You already entered a PIN");
         }
     }
 }

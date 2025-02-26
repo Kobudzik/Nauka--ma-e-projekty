@@ -1,18 +1,9 @@
-﻿using DecoratorDemo.Component;
-using DecoratorDemo.Decorator;
+﻿using Decorator.AbstractDecorator;
+using Decorator.Component;
 
-namespace DecoratorDemo.ConcreteDecorator
+namespace Decorator.ConcreteDecorator;
+
+public class OfferPrice(ICar car) : CarDecorator(car)
 {
-    public class OfferPrice : CarDecorator
-    {
-        public OfferPrice(ICar car)
-            : base(car)
-        {
-        }
-
-        public override double GetDiscountedPrice()
-        {
-            return .8 * base.GetPrice();
-        }
-    }
+    public override double GetDiscountedPrice() => .8 * GetPrice();
 }

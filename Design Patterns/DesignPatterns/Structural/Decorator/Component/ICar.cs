@@ -1,9 +1,8 @@
-﻿namespace DecoratorDemo.Component
-{
-    public interface ICar
-    {
-        string Make { get; }
+﻿namespace Decorator.Component;
 
-        double GetPrice();
-    }
+public interface ICar
+{
+    string Make { get; }
+
+    double GetPrice();
 }

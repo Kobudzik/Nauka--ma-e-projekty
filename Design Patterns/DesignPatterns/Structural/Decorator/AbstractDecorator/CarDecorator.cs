@@ -1,22 +1,12 @@
-﻿using DecoratorDemo.Component;
-namespace DecoratorDemo.Decorator
+﻿using Decorator.Component;
+
+namespace Decorator.AbstractDecorator;
+
+public abstract class CarDecorator(ICar car) : ICar
 {
-    public abstract class CarDecorator : ICar
-    {
-        private readonly ICar _car;
+    public string Make => car.Make;
 
-        protected CarDecorator(ICar Car)
-        {
-            _car = Car;
-        }
+    public double GetPrice() => car.GetPrice();
 
-        public string Make { get { return _car.Make; } }
-
-        public double GetPrice()
-        {
-            return _car.GetPrice();
-        }
-
-        public abstract double GetDiscountedPrice();
-    }
+    public abstract double GetDiscountedPrice();
 }

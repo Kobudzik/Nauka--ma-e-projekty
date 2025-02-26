@@ -1,8 +1,6 @@
-﻿namespace DesignPatterns.Composite.Component
+﻿namespace CompanyComposite.Component;
+
+public interface IEmployee
 {
-    //Component
-    public interface IEmployee
-    {
-        void GetDetails(int indentation);
-    }
+    void GetDetails(int indentation);
 }

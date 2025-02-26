@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns_AbstractFactory_OS
+﻿namespace AbstractFactoryOS.AbstractProduct;
+
+public abstract class Button
 {
-    public abstract class Button
-    {
-        public abstract void Paint();
-    }
+    public abstract void Paint();
 }

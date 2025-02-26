@@ -1,29 +1,20 @@
-﻿using System;
+﻿using Proxy.Object;
+using Proxy.Proxy;
+using System;
 
-namespace DesignPatterns.Proxy
+namespace Proxy;
+
+static class Program
 {
-    public class Driver
+    static void Main()
     {
-        public int Age { get; set; }
+        // How to use above Proxy class?
+        ICar car = new ProxyCar(new Driver(15));
+        car.DriveCar();
 
-        public Driver(int age)
-        {
-            this.Age = age;
-        }
-    }
+        car = new ProxyCar(new Driver(25));
+        car.DriveCar();
 
-    static class Program
-    {
-        static void Main()
-        {
-            // How to use above Proxy class?
-            ICar car = new ProxyCar(new Driver(15));
-            car.DriveCar();
-
-            car = new ProxyCar(new Driver(25));
-            car.DriveCar();
-
-            Console.ReadKey();
-        }
+        Console.ReadKey();
     }
 }

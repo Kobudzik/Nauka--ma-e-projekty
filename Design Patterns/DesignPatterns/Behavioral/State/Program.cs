@@ -1,28 +1,27 @@
 ﻿using System;
 
-namespace DesignPatterns.State
+namespace State;
+
+static class Program
 {
-    static class Program
+    static void Main()
     {
-        static void Main()
-        {
-            ATMMachine atmMachine = new();
+        ATMMachine atmMachine = new();
 
-            atmMachine.InsertCard();
+        atmMachine.InsertCard();
 
-            atmMachine.EjectCard();
+        atmMachine.EjectCard();
 
-            atmMachine.InsertCard();
+        atmMachine.InsertCard();
 
-            atmMachine.InsertPin(1234);
+        atmMachine.InsertPin(1234);
 
-            atmMachine.RequestCash(2000);
+        atmMachine.RequestCash(2000);
 
-            atmMachine.InsertCard();
+        atmMachine.InsertCard();
 
-            atmMachine.InsertPin(1234);
+        atmMachine.InsertPin(1234);
 
-            Console.ReadKey();
-        }
+        Console.ReadKey();
     }
 }

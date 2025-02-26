@@ -1,19 +1,18 @@
 ﻿using MVVM.Model;
 
-namespace MVVM.ViewModel
+namespace MVVM.ViewModel;
+
+public class AccountCreationViewModel
 {
-    public class AccountCreationViewModel
+    public AccountModel NewAccount { get; set; }
+
+    public AccountCreationViewModel()
     {
-        public AccountModel NewAccount { get; set; }
+        NewAccount = new AccountModel();
+    }
 
-        public AccountCreationViewModel()
-        {
-            NewAccount = new AccountModel();
-        }
-
-        public void ValidatePassword()
-        {
-            NewAccount.ValidatePassword();
-        }
+    public void ValidatePassword()
+    {
+        NewAccount.ValidatePassword();
     }
 }

@@ -1,17 +1,10 @@
-﻿using DecoratorDemo.Component;
+﻿using Decorator.Component;
 
-namespace DecoratorDemo.ConcreteComponent
+namespace Decorator.ConcreteComponent;
+
+public sealed class Hyndai : ICar
 {
-    public sealed class Hyndai : ICar
-    {
-        public string Make
-        {
-            get { return "HatchBack"; }
-        }
+    public string Make => "HatchBack";
 
-        public double GetPrice()
-        {
-            return 800000;
-        }
-    }
+    public double GetPrice() => 800000;
 }

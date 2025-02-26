@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Bridge.Implementer;
+using System;
 
-namespace DesignPatterns.Bridge
+namespace Bridge.ConcreteImplementer;
+
+public class IDBIPaymentMethod : IPaymentMethod
 {
-    /// <summary>
-    /// ConcreteImplementor
-    /// </summary>
-    public class IDBIPaymentMethod : IPaymentMethod
+    public void ProcessPayment(string paymentMethod)
     {
-        public void ProcessPayment(string paymentMethod)
-        {
-            Console.WriteLine("Using IDBIBank gateway for  " + paymentMethod);
-        }
+        Console.WriteLine("Using IDBIBank gateway for  " + paymentMethod);
     }
 }

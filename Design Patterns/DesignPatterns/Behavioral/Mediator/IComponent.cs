@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Mediator
+﻿namespace Mediator;
+
+public interface IComponent
 {
-    public interface IComponent
-    {
-        void SetState(object state);
-    }
+    void SetState(object state);
 }

@@ -1,48 +1,50 @@
-﻿namespace BuilderExample
+﻿using BuilderCar.Interface;
+using BuilderCar.Product;
+
+namespace BuilderCar.ConcreteBuilders;
+
+public class CarBuilder : ICarTypeBuilder
 {
-    public class CarBuilder : ICarTypeBuilder
+    public CarBuilder()
     {
-        public CarBuilder()
-        {
-            Reset();
-        }
+        Reset();
+    }
 
-        private Car CarInstance { get; set; }
+    private Car CarInstance { get; set; }
 
-        public void Reset()
-        {
-            CarInstance = new Car();
-        }
+    public void Reset()
+    {
+        CarInstance = new Car();
+    }
 
-        public void SetEngineCc(int engineCC)
-        {
-            CarInstance.EngineCC = engineCC;
-        }
+    public void SetEngineCc(int engineCC)
+    {
+        CarInstance.EngineCC = engineCC;
+    }
 
-        public void SetFuelType(string fuelType)
-        {
-            CarInstance.FuelType = fuelType;
-        }
+    public void SetFuelType(string fuelType)
+    {
+        CarInstance.FuelType = fuelType;
+    }
 
-        public void SetSeats(int numberOfSeats)
-        {
-            CarInstance.Seats = numberOfSeats;
-        }
+    public void SetSeats(int numberOfSeats)
+    {
+        CarInstance.Seats = numberOfSeats;
+    }
 
-        public void SetWheelNumber(int numberOfWheels)
-        {
-            CarInstance.WheelNumber = numberOfWheels;
-        }
-        public void SetRoof(bool hasRoof)
-        {
-            CarInstance.Roof = hasRoof;
-        }
+    public void SetWheelNumber(int numberOfWheels)
+    {
+        CarInstance.WheelNumber = numberOfWheels;
+    }
+    public void SetRoof(bool hasRoof)
+    {
+        CarInstance.Roof = hasRoof;
+    }
 
-        public Car GetProduct()
-        {
-            var product = CarInstance;
-            Reset();
-            return product;
-        }
+    public Car GetProduct()
+    {
+        var product = CarInstance;
+        Reset();
+        return product;
     }
 }

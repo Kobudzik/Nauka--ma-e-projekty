@@ -1,13 +1,11 @@
-﻿namespace DesignPatterns.Bridge
+﻿using Bridge.Abstraction;
+
+namespace Bridge.RefinedAbstraction;
+
+public class NetBankingPayment : Payment
 {
-    /// <summary>
-    /// RefinedAbstraction
-    /// </summary>
-    public class NetBankingPayment : Payment
+    public override void MakePayment()
     {
-        public override void MakePayment()
-        {
-            _IPaymentMethod.ProcessPayment("NetBanking Payment");
-        }
+        _IPaymentMethod.ProcessPayment("NetBanking Payment");
     }
 }

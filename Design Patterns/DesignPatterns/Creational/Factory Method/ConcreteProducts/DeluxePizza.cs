@@ -1,12 +1,10 @@
-﻿namespace DesignPatterns.FactoryMethod
-{
-    public class DeluxePizza : Pizza
-    {
-        private readonly decimal price = 10.5M;
+﻿using FactoryMethod.AbstractProduct;
 
-        public override decimal GetPrice()
-        {
-            return price;
-        }
-    }
+namespace FactoryMethod.ConcreteProducts;
+
+public class DeluxePizza : Pizza
+{
+    private readonly decimal price = 10.5M;
+
+    public override decimal GetPrice() => price;
 }

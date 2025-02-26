@@ -1,26 +1,20 @@
-﻿using DesignPatterns.Composite.Component;
+﻿using CompanyComposite.Component;
 using System;
 
-namespace DesignPatterns.Composite.Leaf
+namespace CompanyComposite.Leaf;
+
+public class Employee(string name, string department) : IEmployee
 {
-    public class Employee : IEmployee
+    public string Name { get; set; } = name;
+    public string Department { get; set; } = department;
+
+    public void GetDetails(int indentation)
     {
-        public string Name { get; set; }
-        public string Department { get; set; }
-
-        public Employee(string name, string dept)
-        {
-            Name = name;
-            Department = dept;
-        }
-
-        public void GetDetails(int indentation)
-        {
-            Console.WriteLine(string.Format(
-                "{0}- Name:{1}, Dept:{2} (Leaf) ",
-                new String('-', indentation),
-                Name,
-                Department));
-        }
+        Console.WriteLine(string.Format(
+            "{0}- Name:{1}, Dept:{2} (Leaf) ",
+            new string('-', indentation),
+            Name,
+            Department)
+        );
     }
 }

@@ -1,14 +1,13 @@
 ﻿using System;
 
-namespace DesignPatterns.Command
-{
-    public interface ITransaction
-    {
-        void Execute();
+namespace Command;
 
-        int ID { get; set; }
-        DateTime CreatedOn { get; set; }
-        CommandState Status { get; set; }
-        void Undo();
-    }
+public interface ITransaction
+{
+    void Execute();
+
+    int Id { get; set; }
+    DateTime CreatedOn { get; set; }
+    CommandState Status { get; set; }
+    void Undo();
 }

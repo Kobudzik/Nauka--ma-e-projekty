@@ -1,62 +1,42 @@
-﻿namespace DesignPatterns.Command
+﻿using System;
+
+namespace Command.Commands;
+
+public class Transfer(int id, Account fromAccount, Account toAccount, decimal amount) : ITransaction
 {
-    using System;
+    public int Id { get; set; } = id;
+    public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+    public CommandState Status { get; set; } = CommandState.Unprocessed;
 
-    namespace Engine.CommandPattern.PatternVersion_WithUndo
+    public void Execute()
     {
-        public class Transfer : ITransaction
+        if (fromAccount.Balance >= amount)
         {
-            private readonly decimal _amount;
-            private readonly Account _fromAccount;
-            private readonly Account _toAccount;
+            fromAccount.Balance -= amount;
+            toAccount.Balance += amount;
 
-            public int ID { get; set; }
-            public DateTime CreatedOn { get; set; }
-            public CommandState Status { get; set; }
+            Status = CommandState.ExecuteSucceeded;
+        }
+        else
+        {
+            Status = CommandState.ExecuteFailed;
+        }
+    }
 
-            public Transfer(int id, Account fromAccount, Account toAccount, decimal amount)
-            {
-                ID = id;
-                CreatedOn = DateTime.UtcNow;
+    public void Undo()
+    {
+        // Remove the money from the original "to" account,
+        // and add it back to the original "from" account.
+        if (toAccount.Balance >= amount)
+        {
+            toAccount.Balance -= amount;
+            fromAccount.Balance += amount;
 
-                _fromAccount = fromAccount;
-                _toAccount = toAccount;
-                _amount = amount;
-
-                Status = CommandState.Unprocessed;
-            }
-
-            public void Execute()
-            {
-                if (_fromAccount.Balance >= _amount)
-                {
-                    _fromAccount.Balance -= _amount;
-                    _toAccount.Balance += _amount;
-
-                    Status = CommandState.ExecuteSucceeded;
-                }
-                else
-                {
-                    Status = CommandState.ExecuteFailed;
-                }
-            }
-
-            public void Undo()
-            {
-                // Remove the money from the original "to" account, 
-                // and add it back to the original "from" account.
-                if (_toAccount.Balance >= _amount)
-                {
-                    _toAccount.Balance -= _amount;
-                    _fromAccount.Balance += _amount;
-
-                    Status = CommandState.UndoSucceeded;
-                }
-                else
-                {
-                    Status = CommandState.UndoFailed;
-                }
-            }
+            Status = CommandState.UndoSucceeded;
+        }
+        else
+        {
+            Status = CommandState.UndoFailed;
         }
     }
 }

@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Bridge.Implementer;
+using System;
 
-namespace DesignPatterns.Bridge
+namespace Bridge.ConcreteImplementer;
+
+public class CitiPaymentMethod : IPaymentMethod
 {
-    /// <summary>
-    /// ConcreteImplementor
-    /// </summary>
-    public class CitiPaymentMethod : IPaymentMethod
+    public void ProcessPayment(string paymentMethod)
     {
-        public void ProcessPayment(string paymentMethod)
-        {
-            Console.WriteLine("Using CitiBank gateway for  " + paymentMethod);
-        }
+        Console.WriteLine("Using CitiBank gateway for  " + paymentMethod);
     }
 }

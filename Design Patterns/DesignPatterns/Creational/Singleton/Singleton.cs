@@ -1,30 +1,29 @@
-﻿namespace DesignPatterns_Singleton
+﻿namespace Singleton;
+
+public sealed class Config
 {
-    public sealed class Config
+    private static Config _instance;
+    private static readonly object _syncLock = new();
+
+    private static string _param1;
+    private static string _param2;
+
+    private Config() //constructor
     {
-        private static Config _instance;
-        private static readonly object _syncLock = new();
+        _param1 = "default";
+        _param2 = "default";
+    }
 
-        private static string _param1;
-        private static string _param2;
-
-        private Config() //constructor
+    public static Config GetConfig()
+    {
+        if (_instance == null)
         {
-            _param1 = "default";
-            _param2 = "default";
-        }
-
-        public static Config GetConfig()
-        {
-            if (_instance == null) //jeśli docelowy obiekt nie istnieje
+            lock (_syncLock)
             {
-                lock (_syncLock) //nakłada blokadę
-                {
-                    _instance ??= new Config(); //tworzy obiekt
-                } //here lock releases
+                _instance ??= new Config();
             }
-
-            return _instance;
         }
+
+        return _instance;
     }
 }

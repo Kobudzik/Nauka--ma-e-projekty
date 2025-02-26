@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.FactoryMethod
+﻿namespace FactoryMethod.AbstractProduct;
+
+public abstract class Pizza
 {
-    public abstract class Pizza
-    {
-        public abstract decimal GetPrice();
-    }
+    public abstract decimal GetPrice();
 }

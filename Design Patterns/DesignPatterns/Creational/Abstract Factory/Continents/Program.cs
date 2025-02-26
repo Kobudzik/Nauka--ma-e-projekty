@@ -1,145 +1,23 @@
-﻿using System;
+﻿using AbstractFactoryContinents.Factories;
+using System;
 
-namespace DesignPatternsAbstractFactory_Continents
+namespace AbstractFactoryContinents;
+
+internal static class Program
 {
-    internal static class Program
+    private static void Main()
     {
-        /// <summary>
-        /// The 'AbstractFactory' abstract class
-        /// </summary>
-        private abstract class ContinentFactory
-        {
-            public abstract Herbivore CreateHerbivore();
+        // Create and run the African animal world
+        AbstractContinentFactory africa = new AfricaFactory();
+        AnimalWorld world = new(africa);
+        world.RunFoodChain();
 
-            public abstract Carnivore CreateCarnivore();
-        }
+        // Create and run the American animal world
+        AbstractContinentFactory america = new AmericaFactory();
+        world = new AnimalWorld(america);
+        world.RunFoodChain();
 
-        /// <summary>
-        /// The 'ConcreteFactory1' class
-        /// </summary>
-        private class AfricaFactory : ContinentFactory
-
-        {
-            public override Herbivore CreateHerbivore()
-            {
-                return new Wildebeest();
-            }
-
-            public override Carnivore CreateCarnivore()
-            {
-                return new Lion();
-            }
-        }
-
-        /// <summary>
-        /// The 'ConcreteFactory2' class
-        /// </summary>
-        private class AmericaFactory : ContinentFactory
-
-        {
-            public override Herbivore CreateHerbivore()
-            {
-                return new Bison();
-            }
-
-            public override Carnivore CreateCarnivore()
-            {
-                return new Wolf();
-            }
-        }
-
-        /// <summary>
-        /// The 'AbstractProductA' abstract class
-        /// </summary>
-        private abstract class Herbivore
-        {
-        }
-
-        /// <summary>
-        /// The 'AbstractProductB' abstract class
-        /// </summary>
-        private abstract class Carnivore
-        {
-            public abstract void Eat(Herbivore h);
-        }
-
-        /// <summary>
-        /// The 'ProductA1' class
-        /// </summary>
-        private class Wildebeest : Herbivore
-        {
-        }
-
-        /// <summary>
-        /// The 'ProductB1' class
-        /// </summary>
-        private class Lion : Carnivore
-        {
-            public override void Eat(Herbivore h)
-            {
-                // Eat Wildebeest
-                Console.WriteLine(this.GetType().Name +
-                  " eats " + h.GetType().Name);
-            }
-        }
-
-        /// <summary>
-        /// The 'ProductA2' class
-        /// </summary>
-        private class Bison : Herbivore
-        {
-        }
-
-        /// <summary>
-        /// The 'ProductB2' class
-        /// </summary>
-        private class Wolf : Carnivore
-        {
-            public override void Eat(Herbivore h)
-            {
-                // Eat Bison
-
-                Console.WriteLine(this.GetType().Name +
-                  " eats " + h.GetType().Name);
-            }
-        }
-
-        /// <summary>
-        /// The 'Client' class
-        /// </summary>
-        private class AnimalWorld
-
-        {
-            private readonly Herbivore _herbivore;
-            private readonly Carnivore _carnivore;
-
-            // Constructor
-            public AnimalWorld(ContinentFactory factory)
-            {
-                _carnivore = factory.CreateCarnivore();
-                _herbivore = factory.CreateHerbivore();
-            }
-
-            public void RunFoodChain()
-            {
-                _carnivore.Eat(_herbivore);
-            }
-        }
-
-        private static void Main()
-        {
-            // Create and run the African animal world
-            ContinentFactory africa = new AfricaFactory();
-            AnimalWorld world = new(africa);
-            world.RunFoodChain();
-
-            // Create and run the American animal world
-            ContinentFactory america = new AmericaFactory();
-            world = new AnimalWorld(america);
-            world.RunFoodChain();
-
-            // Wait for user input
-            Console.ReadKey();
-        }
+        // Wait for user input
+        Console.ReadKey();
     }
 }

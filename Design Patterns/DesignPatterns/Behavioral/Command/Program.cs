@@ -1,9 +1,8 @@
-﻿namespace DesignPatterns.Command
+﻿namespace Command;
+
+static class Program
 {
-    static class Program
+    static void Main()
     {
-        static void Main()
-        {
-        }
     }
 }

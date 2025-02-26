@@ -1,9 +1,8 @@
-﻿namespace DesignPatterns.Flyweight
+﻿namespace Flyweight;
+
+static class Program
 {
-    static class Program
+    static void Main()
     {
-        static void Main()
-        {
-        }
     }
 }

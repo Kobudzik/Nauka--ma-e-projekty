@@ -1,30 +1,31 @@
-﻿using System;
+﻿using Adapter.Adapter;
+using Adapter.Target;
+using System;
 
-namespace DesignPatterns.Adapter
+namespace Adapter;
+
+public static class MainApp
 {
-    public static class MainApp
+    static void Main()
     {
-        static void Main()
-        {
-            // Non-adapted chemical compound
-            Compound unknown = new("Unknown");
-            unknown.Display();
+        // Non-adapted chemical compound
+        Compound unknown = new("Unknown");
+        unknown.Display();
 
-            // Adapted chemical compounds
-            Compound unknown2 = new RichCompound("Unknown");
-            unknown2.Display();
+        // Adapted chemical compounds
+        Compound unknown2 = new RichCompound("Unknown");
+        unknown2.Display();
 
-            Compound water = new RichCompound("Water");
-            water.Display();
+        Compound water = new RichCompound("Water");
+        water.Display();
 
-            Compound benzene = new RichCompound("Benzene");
-            benzene.Display();
+        Compound benzene = new RichCompound("Benzene");
+        benzene.Display();
 
-            Compound ethanol = new RichCompound("Ethanol");
-            ethanol.Display();
+        Compound ethanol = new RichCompound("Ethanol");
+        ethanol.Display();
 
-            // Wait for user
-            Console.ReadKey();
-        }
+        // Wait for user
+        Console.ReadKey();
     }
 }

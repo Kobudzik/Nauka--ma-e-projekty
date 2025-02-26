@@ -1,73 +1,55 @@
-﻿namespace DesignPatterns.Momento
+﻿namespace Momento;
+
+public class CustomerBetterMemento(
+    int id,
+    string name,
+    string address,
+    string city,
+    string stateProvince,
+    string postalCode)
 {
-    public class CustomerBetterMemento
+    // This is the memento object, which holds the original values.
+    private readonly CustomerMemento _customerMemento = new(name, address, city, stateProvince, postalCode);
+
+    public int ID { get; set; } = id;
+    public string Name { get; set; } = name;
+    public string Address { get; set; } = address;
+    public string City { get; set; } = city;
+    public string StateProvince { get; set; } = stateProvince;
+    public string PostalCode { get; set; } = postalCode;
+
+    public bool IsDirty
     {
-        // This is the memento object, which holds the original values.
-        private readonly CustomerMemento _customerMemento;
-
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string StateProvince { get; set; }
-        public string PostalCode { get; set; }
-
-        public bool IsDirty
+        get
         {
-            get
-            {
-                return Name != _customerMemento.Name ||
-                       Address != _customerMemento.Address ||
-                       City != _customerMemento.City ||
-                       StateProvince != _customerMemento.StateProvince ||
-                       PostalCode != _customerMemento.PostalCode;
-            }
+            return Name != _customerMemento.Name ||
+                   Address != _customerMemento.Address ||
+                   City != _customerMemento.City ||
+                   StateProvince != _customerMemento.StateProvince ||
+                   PostalCode != _customerMemento.PostalCode;
         }
+    }
 
-        public CustomerBetterMemento(int id, string name, string address,
-            string city, string stateProvince, string postalCode)
-        {
-            ID = id;
-            Name = name;
-            Address = address;
-            City = city;
-            StateProvince = stateProvince;
-            PostalCode = postalCode;
+    public void RevertToOriginalValues()
+    {
+        Name = _customerMemento.Name;
+        Address = _customerMemento.Address;
+        City = _customerMemento.City;
+        StateProvince = _customerMemento.StateProvince;
+        PostalCode = _customerMemento.PostalCode;
+    }
 
-            // Save the originally-passed values to the "memento".
-            _customerMemento = new CustomerMemento(name, address, city, stateProvince, postalCode);
-        }
-
-        public void RevertToOriginalValues()
-        {
-            Name = _customerMemento.Name;
-            Address = _customerMemento.Address;
-            City = _customerMemento.City;
-            StateProvince = _customerMemento.StateProvince;
-            PostalCode = _customerMemento.PostalCode;
-        }
-
-        // This is one of the rare cases where you might declare more than one class in a file.
-        // The CustomerMemento class will never be used any place, other than in the Customer class.
-        // So, you can make it a private class inside the one class where it's used.
-        // Or, you could put it in its own file, and declare it an internal or public class.
-        private class CustomerMemento
-        {
-            public string Name { get; }
-            public string Address { get; }
-            public string City { get; }
-            public string StateProvince { get; }
-            public string PostalCode { get; }
-
-            public CustomerMemento(string name, string address,
-                string city, string stateProvince, string postalCode)
-            {
-                Name = name;
-                Address = address;
-                City = city;
-                StateProvince = stateProvince;
-                PostalCode = postalCode;
-            }
-        }
+    // This is one of the rare cases where you might declare more than one class in a file.
+    // The CustomerMemento class will never be used any place, other than in the Customer class.
+    // So, you can make it a private class inside the one class where it's used.
+    // Or, you could put it in its own file, and declare it an internal or public class.
+    private class CustomerMemento(string name, string address,
+        string city, string stateProvince, string postalCode)
+    {
+        public string Name { get; } = name;
+        public string Address { get; } = address;
+        public string City { get; } = city;
+        public string StateProvince { get; } = stateProvince;
+        public string PostalCode { get; } = postalCode;
     }
 }

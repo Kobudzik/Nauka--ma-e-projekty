@@ -1,8 +1,6 @@
-﻿namespace DesignPatterns.Proxy
+﻿namespace Proxy.Object;
+
+interface ICar
 {
-    // Object
-    interface ICar
-    {
-        void DriveCar();
-    }
+    void DriveCar();
 }

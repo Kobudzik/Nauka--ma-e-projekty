@@ -1,25 +1,25 @@
 ﻿using System;
 
-namespace DesignPatterns.Strategy
+namespace Strategy;
+
+public class Dog : Animal
 {
-    public class Dog : Animal
+    public void DigHole()
     {
-        public void DigHole()
-        {
-            Console.WriteLine("Dug a hole");
-        }
+        Console.WriteLine("Dug a hole");
+    }
 
-        public Dog()
-        {
-            SetSound("Bark");
+    public Dog()
+    {
+        SetSound("Bark");
 
-            // We set the Flys interface polymorphically
-            // This sets the behavior as a non-flying Animal
+        // We set the Flys interface polymorphically
+        // This sets the behavior as a non-flying Animal
 
-            flyingType = new CantFly();
-        }
+        flyingType = new CantFly();
+    }
 
-        /* BAD
+    /* BAD
 		* You could override the fly method, but we are breaking
 		* the rule that we need to abstract what is different to 
 		* the subclasses
@@ -30,5 +30,4 @@ namespace DesignPatterns.Strategy
 
 		}
 		*/
-    }
 }

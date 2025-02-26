@@ -1,13 +1,9 @@
-﻿
-using DesignPatterns_Singleton;
+﻿namespace Singleton;
 
-namespace SingletonDemo
+static class Program
 {
-    static class Program
+    static void Main()
     {
-        static void Main()
-        {
-            var config = Config.GetConfig();
-        }
+        var config = Config.GetConfig();
     }
 }

@@ -1,12 +1,10 @@
-﻿namespace DesignPatterns.Bridge
-{
-    /// <summary>
-    /// Abstraction
-    /// </summary>
-    public abstract class Payment
-    {
-        public IPaymentMethod _IPaymentMethod; //ACTUAL BRIDGE
+﻿using Bridge.Implementer;
 
-        public abstract void MakePayment();
-    }
+namespace Bridge.Abstraction;
+
+public abstract class Payment
+{
+    public IPaymentMethod _IPaymentMethod; //ACTUAL BRIDGE
+
+    public abstract void MakePayment();
 }

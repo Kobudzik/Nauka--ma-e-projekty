@@ -1,10 +1,6 @@
-﻿namespace DesignPatterns.Bridge
+﻿namespace Bridge.Implementer;
+
+public interface IPaymentMethod
 {
-    /// <summary>
-    /// Implementor Interface
-    /// </summary>
-    public interface IPaymentMethod
-    {
-        void ProcessPayment(string paymentMethod);
-    }
+    void ProcessPayment(string paymentMethod);
 }

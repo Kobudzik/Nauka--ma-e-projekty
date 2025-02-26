@@ -1,22 +1,16 @@
-﻿namespace DesignPatterns.Visitor
+﻿namespace Visitor.VisitableClasses;
+
+public class Liquor(double item) : IVisitable
 {
-    public class Liquor : IVisitable
+    private readonly double price = item;
+
+    public double Accept(IVisitor visitor)
     {
-        private readonly double price;
+        return visitor.Visit(this);
+    }
 
-        public Liquor(double item)
-        {
-            price = item;
-        }
-
-        public double Accept(IVisitor visitor)
-        {
-            return visitor.Visit(this);
-        }
-
-        public double GetPrice()
-        {
-            return price;
-        }
+    public double GetPrice()
+    {
+        return price;
     }
 }

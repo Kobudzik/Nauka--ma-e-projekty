@@ -1,73 +1,72 @@
 ﻿using System;
 
-namespace DesignPatterns.Template
+namespace Template;
+
+public abstract class Hoagie
 {
-    public abstract class Hoagie
+    public void MakeSandwitch()
     {
-        public void MakeSandwitch()
+        CutBun();
+
+        if (CustomerWantsMeat())
         {
-            CutBun();
-
-            if (CustomerWantsMeat())
-            {
-                AddMeat();
-                Console.WriteLine();
-            }
-
-            if (CustomerWantsCheese())
-            {
-                AddCheese();
-                Console.WriteLine();
-            }
-
-            if (CustomerWantsVegetables())
-            {
-                AddVegetables();
-                Console.WriteLine();
-            }
-
-            if (CustomerWantsCondiments())
-            {
-                AddCondiments();
-                Console.WriteLine();
-            }
-
-            WrapTheHoogie();
+            AddMeat();
+            Console.WriteLine();
         }
 
-        public void CutBun()
+        if (CustomerWantsCheese())
         {
-            Console.WriteLine("The Hoogie is cut!");
+            AddCheese();
+            Console.WriteLine();
         }
 
-        public abstract void AddMeat();
-        public abstract void AddCheese();
-        public abstract void AddVegetables();
-        public abstract void AddCondiments();
-
-        public virtual bool CustomerWantsMeat()
+        if (CustomerWantsVegetables())
         {
-            return true;
+            AddVegetables();
+            Console.WriteLine();
         }
 
-        public virtual bool CustomerWantsCheese()
+        if (CustomerWantsCondiments())
         {
-            return true;
+            AddCondiments();
+            Console.WriteLine();
         }
 
-        public virtual bool CustomerWantsVegetables()
-        {
-            return true;
-        }
+        WrapTheHoogie();
+    }
 
-        public virtual bool CustomerWantsCondiments()
-        {
-            return true;
-        }
+    public void CutBun()
+    {
+        Console.WriteLine("The Hoogie is cut!");
+    }
 
-        public void WrapTheHoogie()
-        {
-            Console.WriteLine("Wrapping the Hoogie!");
-        }
+    public abstract void AddMeat();
+    public abstract void AddCheese();
+    public abstract void AddVegetables();
+    public abstract void AddCondiments();
+
+    public virtual bool CustomerWantsMeat()
+    {
+        return true;
+    }
+
+    public virtual bool CustomerWantsCheese()
+    {
+        return true;
+    }
+
+    public virtual bool CustomerWantsVegetables()
+    {
+        return true;
+    }
+
+    public virtual bool CustomerWantsCondiments()
+    {
+        return true;
+    }
+
+    public void WrapTheHoogie()
+    {
+        Console.WriteLine("Wrapping the Hoogie!");
     }
 }

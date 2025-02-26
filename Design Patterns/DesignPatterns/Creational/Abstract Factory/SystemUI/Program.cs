@@ -1,20 +1,21 @@
-﻿using System;
+﻿using AbstractFactoryOS.AbstractProduct;
+using AbstractFactoryOS.Factories;
+using System;
 
-namespace DesignPatterns_AbstractFactory_OS
+namespace AbstractFactoryOS;
+
+public static class Program
 {
-    public static class Program
+    static void Main()
     {
-        static void Main()
-        {
-            GUIFactory factory = GUIFactory.GetFactory(OS_TYPE.Windows);
-            Button button = factory.CreateButton();
-            button.Paint();
-            Console.ReadLine();
+        AbstractGUIFactory factory = AbstractGUIFactory.GetFactory(OS_TYPE.Windows);
+        Button button = factory.CreateButton();
+        button.Paint();
+        Console.ReadLine();
 
-            // Wyświetlony zostanie tekst:
-            //   "Przycisk WinButton"
-            // lub:
-            //   "Przycisk OSXButton"
-        }
+        // Wyświetlony zostanie tekst:
+        //   "Przycisk WinButton"
+        // lub:
+        //   "Przycisk OSXButton"
     }
 }

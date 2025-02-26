@@ -1,35 +1,19 @@
 ﻿using System;
 
-namespace DesignPatterns.Builder_Report
+namespace BuilderReport;
+
+public class Report(DateTime from, DateTime to, bool includeReturnedOrders, bool includeUnshippedOrders, SortingMethod sortBy)
 {
-    public class Report
+    private readonly DateTime _fromDate = from;
+    private readonly DateTime _toDate = to;
+    private readonly bool _includeReturnedOrders = includeReturnedOrders;
+    private readonly bool _includeUnshippedOrders = includeUnshippedOrders;
+    private readonly SortingMethod _sortBy = sortBy;
+
+    public object CreatePDFReport()
     {
-        public enum SortingMethod
-        {
-            BySalesperson,
-            ByTaxCategory
-        }
-
-        private readonly DateTime _fromDate;
-        private readonly DateTime _toDate;
-        private readonly bool _includeReturnedOrders;
-        private readonly bool _includeUnshippedOrders;
-        private readonly SortingMethod _sortBy;
-
-        public Report(DateTime from, DateTime to, bool includeReturnedOrders, bool includeUnshippedOrders, SortingMethod sortBy)
-        {
-            _fromDate = from;
-            _toDate = to;
-            _includeReturnedOrders = includeReturnedOrders;
-            _includeUnshippedOrders = includeUnshippedOrders;
-            _sortBy = sortBy;
-        }
-
-        public object CreatePDFReport()
-        {
-            // Pretend this object is a PDF report, 
-            // built for the sales that match the passed-in constructor parameters.
-            return new object();
-        }
+        // Pretend this object is a PDF report,
+        // built for the sales that match the passed-in constructor parameters.
+        return new object();
     }
 }

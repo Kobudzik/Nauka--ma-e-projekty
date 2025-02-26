@@ -1,26 +1,25 @@
 ﻿using System;
 
-namespace DesignPatterns.ChainOfResponsibility
+namespace ChainOfResponsibility;
+
+internal class SubtractNumbers : IChain
 {
-    internal class SubtractNumbers : IChain
+    private IChain _nextInChain;
+
+    public void SetNextChain(IChain nextChain)
     {
-        private IChain nextInChain;
+        _nextInChain = nextChain;
+    }
 
-        public void SetNextChain(IChain nextChain)
+    public void Calculate(Numbers request)
+    {
+        if (request.GetCalcWanted() == "sub")
         {
-            nextInChain = nextChain;
+            Console.WriteLine(request.GetNumber1() + " - " + request.GetNumber2() + " = " + (request.GetNumber1() - request.GetNumber2()));
         }
-
-        public void Calculate(Numbers request)
+        else
         {
-            if (request.GetCalcWanted() == "sub")
-            {
-                Console.WriteLine(request.GetNumber1() + " - " + request.GetNumber2() + " = " + (request.GetNumber1() - request.GetNumber2()));
-            }
-            else
-            {
-                Console.WriteLine("Only works for add and substract!");
-            }
+            Console.WriteLine("Only works for add and substract!");
         }
     }
 }

@@ -1,67 +1,60 @@
-﻿using System;
+﻿using EquipmentComposite.Component;
+using EquipmentComposite.Composite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CompositeDesignPattern
+namespace EquipmentComposite;
+
+public class Equipment
 {
-    public class Equipment
+    public List<EquipmentObject> ObjectList { get; set; } = [];
+
+    public void AddObject(EquipmentObject equipmentObject, int containerId)
     {
-        public Equipment()
+        if (containerId == 0)
         {
-            _objectList = new List<EquipmentObject>();
+            ObjectList.Add(equipmentObject);
+        }
+        else
+        {
+            FindLightestContainer().ObjectList.Add(equipmentObject);
+        }
+    }
+
+    public EquipmentContainer FindContainer(int containerId)
+    {
+        var mainContainers = ObjectList
+               .OfType<EquipmentContainer>()
+               .ToList();
+
+        foreach (var container in mainContainers)
+        {
+            var containerFound = container.FindContainer(containerId);
+
+            if (containerFound == null)
+                throw new ApplicationException($"Container with id {containerId} not found.");
+
+            return containerFound;
         }
 
-        internal List<EquipmentObject> _objectList;
+        throw new ApplicationException($"Container with id {containerId} not found.");
+    }
 
-        public void AddObject(EquipmentObject eqObject, int containerId)
-        {
-            if (containerId == 0)
-            {
-                _objectList.Add(eqObject);
-            }
-            else
-            {
-                FindLightestContainer().ObjectList.Add(eqObject);
-            }
-        }
+    public EquipmentContainer FindLightestContainer()
+    {
+        var mainContainers = ObjectList
+               .OfType<EquipmentContainer>()
+               .ToList();
 
-        public EquipmentContainer FindContainer(int containerId)
-        {
-            var mainContainers = _objectList
-                   .OfType<EquipmentContainer>()
-                   .ToList();
+        EquipmentContainer lightestContainer = mainContainers.OrderBy(x => x.Weight).FirstOrDefault();
 
-            EquipmentContainer containerFound = null;
+        if (lightestContainer == null)
+            throw new ApplicationException("No containers in EQ");
 
-            foreach (var container in mainContainers)
-            {
-                containerFound = container.FindContainer(containerId);
+        foreach (var container in mainContainers)
+            lightestContainer = container.FindLighterContainer(lightestContainer);
 
-                if (containerFound == null)
-                    throw new ApplicationException($"Container with id {containerId} not found.");
-
-                return containerFound;
-            }
-            throw new ApplicationException($"Container with id {containerId} not found.");
-        }
-
-        public EquipmentContainer FindLightestContainer()
-        {
-            var mainContainers = _objectList
-                   .OfType<EquipmentContainer>()
-                   .ToList();
-
-            EquipmentContainer lightestContainer = null;
-
-            lightestContainer = mainContainers.OrderBy(x => x.Weight).FirstOrDefault();
-
-            if (lightestContainer == null)
-                throw new ApplicationException("No containers in EQ");
-
-            foreach (var container in mainContainers)
-                lightestContainer = container.FindLighterContainer(lightestContainer);
-
-            return lightestContainer;
-        }
+        return lightestContainer;
     }
 }

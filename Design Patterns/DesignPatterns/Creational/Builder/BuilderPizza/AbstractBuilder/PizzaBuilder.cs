@@ -1,18 +1,17 @@
-﻿namespace DesignPatterns.Builder_Pizza
+﻿using BuilderPizza.Product;
+
+namespace BuilderPizza.AbstractBuilder;
+
+public abstract class PizzaBuilder
 {
-    //Abstract Builder
-    public abstract class PizzaBuilder
+    public Pizza Pizza { get; protected set; }
+
+    public void CreateNewPizza()
     {
-        protected Pizza pizza;  //backing field
-        public Pizza Pizza { get { return pizza; } }    //property
-
-        public void CreateNewPizza()
-        {
-            pizza = new Pizza();
-        }
-
-        public abstract void BuildDough();
-        public abstract void BuildSauce();
-        public abstract void BuildTopping();
+        Pizza = new Pizza();
     }
+
+    public abstract void BuildDough();
+    public abstract void BuildSauce();
+    public abstract void BuildTopping();
 }

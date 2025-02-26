@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Proxy.Object;
+using System;
 
-namespace DesignPatterns.Proxy
+namespace Proxy.RealObject;
+
+public class Car : ICar
 {
-    // Real Object
-    public class Car : ICar
+    public void DriveCar()
     {
-        public void DriveCar()
-        {
-            Console.WriteLine("Car has been driven!");
-        }
+        Console.WriteLine("Car has been driven!");
     }
 }

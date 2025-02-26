@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace DesignPatterns.Mediator
+namespace Mediator.ConcreteComponents;
+
+public class Component2 : IComponent
 {
-    public class Component2 : IComponent
+    public void SetState(object state)
     {
-        public void SetState(object state)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }

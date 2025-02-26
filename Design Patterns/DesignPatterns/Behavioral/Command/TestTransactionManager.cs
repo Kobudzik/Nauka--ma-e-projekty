@@ -1,6 +1,3 @@
-﻿namespace DesignPatterns.Command
-{
-    class TestTransactionManager
-    {
-    }
-}
+﻿namespace Command;
+
+class TestTransactionManager;

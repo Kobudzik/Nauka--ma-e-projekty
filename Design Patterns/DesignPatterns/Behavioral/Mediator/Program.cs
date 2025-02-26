@@ -1,9 +1,8 @@
-﻿namespace DesignPatterns.Mediator
+﻿namespace Mediator;
+
+static class Program
 {
-    static class Program
+    static void Main()
     {
-        static void Main()
-        {
-        }
     }
 }

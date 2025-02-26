@@ -1,17 +1,10 @@
-﻿using DecoratorDemo.Component;
+﻿using Decorator.Component;
 
-namespace DecoratorDemo.ConcreteComponent
+namespace Decorator.ConcreteComponent;
+
+public sealed class Suzuki : ICar
 {
-    public sealed class Suzuki : ICar
-    {
-        public string Make
-        {
-            get { return "Sedan"; }
-        }
+    public string Make => "Sedan";
 
-        public double GetPrice()
-        {
-            return 1000000;
-        }
-    }
+    public double GetPrice() => 1000000;
 }

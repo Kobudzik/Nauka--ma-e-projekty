@@ -1,13 +1,11 @@
-﻿namespace DesignPatterns.Bridge
+﻿using Bridge.Abstraction;
+
+namespace Bridge.RefinedAbstraction;
+
+public class CardPayment : Payment
 {
-    /// <summary>
-    /// RefinedAbstraction
-    /// </summary>
-    public class CardPayment : Payment
+    public override void MakePayment()
     {
-        public override void MakePayment()
-        {
-            _IPaymentMethod.ProcessPayment("Card Payment");
-        }
+        _IPaymentMethod.ProcessPayment("Card Payment");
     }
 }

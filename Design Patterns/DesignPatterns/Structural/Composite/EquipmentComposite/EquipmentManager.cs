@@ -1,35 +1,30 @@
-﻿using System;
+﻿using EquipmentComposite.Component;
+using System;
 
-namespace CompositeDesignPattern
+namespace EquipmentComposite;
+
+class EquipmentManager(Equipment equipment)
 {
-    class EquipmentManager
+    private readonly Equipment equipment = equipment;
+
+    public void AddItem(EquipmentObject obj, int? containerId = null)
     {
-        public EquipmentManager(Equipment equipment)
+        if (containerId == null)
         {
-            this.equipment = equipment;
+            var container = equipment.FindLightestContainer();
+            equipment.AddObject(obj, container.ContainerId);
         }
-
-        private readonly Equipment equipment;
-
-        public void AddItem(EquipmentObject obj, int? containerId = null)
+        else
         {
-            if (containerId == null)
-            {
-                var container = equipment.FindLightestContainer();
-                equipment.AddObject(obj, container.ContainerId);
-            }
-            else
-            {
-                equipment.AddObject(obj, containerId.Value);
-            }
+            equipment.AddObject(obj, containerId.Value);
         }
+    }
 
-        public void GetSummary()
-        {
-            Console.WriteLine("Your backpack (container 0) contains:");
+    public void GetSummary()
+    {
+        Console.WriteLine("Your backpack (container 0) contains:");
 
-            foreach (var eqObject in equipment._objectList)
-                eqObject.GetDescription(0);
-        }
+        foreach (var eqObject in equipment.ObjectList)
+            eqObject.GetDescription(0);
     }
 }

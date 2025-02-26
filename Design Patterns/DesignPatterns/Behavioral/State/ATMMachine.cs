@@ -1,66 +1,67 @@
-﻿namespace DesignPatterns.State
+﻿using State.ConcreteStates;
+
+namespace State;
+
+public class ATMMachine
 {
-    public class ATMMachine
+    readonly IATMState hasCard;
+    readonly IATMState noCard;
+    readonly IATMState hasCorrectPin;
+    readonly IATMState atmOutOfMoney;
+
+    IATMState currentAtmState;
+
+    public int cashInMachine = 2000;
+    public bool correctPinEntered = false;
+
+    public ATMMachine()
     {
-        readonly IATMState hasCard;
-        readonly IATMState noCard;
-        readonly IATMState hasCorrectPin;
-        readonly IATMState atmOutOfMoney;
+        hasCard = new HasCard(this);
+        noCard = new NoCard(this);
+        hasCorrectPin = new HasPin(this);
+        atmOutOfMoney = new NoCash(this);
 
-        IATMState currentAtmState;
+        //default state
+        currentAtmState = noCard;
 
-        public int cashInMachine = 2000;
-        public bool correctPinEntered = false;
-
-        public ATMMachine()
+        if (cashInMachine < 0)
         {
-            hasCard = new HasCard(this);
-            noCard = new NoCard(this);
-            hasCorrectPin = new HasPin(this);
-            atmOutOfMoney = new NoCash(this);
-
-            //default state
-            currentAtmState = noCard;
-
-            if (cashInMachine < 0)
-            {
-                currentAtmState = atmOutOfMoney;
-            }
+            currentAtmState = atmOutOfMoney;
         }
-
-        public void SetATMState(IATMState newATMState)
-        {
-            currentAtmState = newATMState;
-        }
-
-        public void SetCashInMachine(int newCashInMachine)
-        {
-            cashInMachine = newCashInMachine;
-        }
-
-        public void InsertCard()
-        {
-            currentAtmState.InsertCard();
-        }
-
-        public void EjectCard()
-        {
-            currentAtmState.EjectCard();
-        }
-
-        public void RequestCash(int cashToWithdraw)
-        {
-            currentAtmState.RequestCash(cashToWithdraw);
-        }
-
-        public void InsertPin(int pinEntered)
-        {
-            currentAtmState.InsertPin(pinEntered);
-        }
-
-        public IATMState GetYesCardState() { return hasCard; }
-        public IATMState GetNoCardState() { return noCard; }
-        public IATMState GetHasPin() { return hasCorrectPin; }
-        public IATMState GetNoCashState() { return atmOutOfMoney; }
     }
+
+    public void SetATMState(IATMState newATMState)
+    {
+        currentAtmState = newATMState;
+    }
+
+    public void SetCashInMachine(int newCashInMachine)
+    {
+        cashInMachine = newCashInMachine;
+    }
+
+    public void InsertCard()
+    {
+        currentAtmState.InsertCard();
+    }
+
+    public void EjectCard()
+    {
+        currentAtmState.EjectCard();
+    }
+
+    public void RequestCash(int cashToWithdraw)
+    {
+        currentAtmState.RequestCash(cashToWithdraw);
+    }
+
+    public void InsertPin(int pinEntered)
+    {
+        currentAtmState.InsertPin(pinEntered);
+    }
+
+    public IATMState GetYesCardState() { return hasCard; }
+    public IATMState GetNoCardState() { return noCard; }
+    public IATMState GetHasPin() { return hasCorrectPin; }
+    public IATMState GetNoCashState() { return atmOutOfMoney; }
 }

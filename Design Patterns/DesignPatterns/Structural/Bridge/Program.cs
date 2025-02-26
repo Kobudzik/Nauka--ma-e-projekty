@@ -1,27 +1,31 @@
-﻿using System;
+﻿using Bridge.Abstraction;
+using Bridge.ConcreteImplementer;
+using Bridge.RefinedAbstraction;
+using System;
 
-namespace DesignPatterns.Bridge
+namespace Bridge;
+
+static class Program
 {
-    static class Program
+    static void Main()
     {
-        static void Main()
+        Payment order = new CardPayment
         {
-            Payment order = new CardPayment
-            {
-                _IPaymentMethod = new CitiPaymentMethod()
-            };
-            order.MakePayment();
+            _IPaymentMethod = new CitiPaymentMethod()
+        };
 
-            order._IPaymentMethod = new IDBIPaymentMethod();
-            order.MakePayment();
+        order.MakePayment();
 
-            order = new NetBankingPayment
-            {
-                _IPaymentMethod = new CitiPaymentMethod()
-            };
-            order.MakePayment();
+        order._IPaymentMethod = new IDBIPaymentMethod();
+        order.MakePayment();
 
-            Console.ReadKey();
-        }
+        order = new NetBankingPayment
+        {
+            _IPaymentMethod = new CitiPaymentMethod()
+        };
+
+        order.MakePayment();
+
+        Console.ReadKey();
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace DesignPatterns.FactoryMethod
+﻿namespace FactoryMethod;
+
+public enum PizzaType
 {
-    public enum PizzaType
-    {
-        HamMushroom,
-        Deluxe,
-        Hawaiian
-    }
+    HamMushroom,
+    Deluxe,
+    Hawaiian
 }

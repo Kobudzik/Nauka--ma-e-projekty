@@ -1,82 +1,81 @@
 ﻿using System.Net;
 using System.Net.Mail;
 
-namespace DesignPatterns.Facade
+namespace Facade;
+
+public class EmailCreator : IEmailFluentInterface
 {
-    public class EmailCreator : IEmailFluentInterface
+    private readonly MailMessage _mailMessage = new();   //base class ref
+
+    private EmailCreator(string fromAddress) //private ctor
     {
-        private readonly MailMessage _mailMessage = new();   //base class ref
+        _mailMessage.Sender = new MailAddress(fromAddress);
+    }
 
-        private EmailCreator(string fromAddress) //prywatny konstruktor
+    public static IEmailFluentInterface CreateEmailFrom(string fromAddress)
+    {
+        return new EmailCreator(fromAddress);
+    }
+
+    public IEmailFluentInterface From(string fromAddress)
+    {
+        return this;
+    }
+
+    public IEmailFluentInterface To(params string[] toAddresses)
+    {
+        foreach (string toAddress in toAddresses)
         {
-            _mailMessage.Sender = new MailAddress(fromAddress);
+            _mailMessage.To.Add(new MailAddress(toAddress));
         }
 
-        public static IEmailFluentInterface CreateEmailFrom(string fromAddress)
+        return this;
+    }
+
+    public IEmailFluentInterface CC(params string[] ccAddresses)
+    {
+        foreach (string ccAddress in ccAddresses)
         {
-            return new EmailCreator(fromAddress);
+            _mailMessage.CC.Add(new MailAddress(ccAddress));
         }
 
-        public IEmailFluentInterface From(string fromAddress)
+        return this;
+    }
+
+    public IEmailFluentInterface BCC(params string[] bccAddresses)
+    {
+        foreach (string bccAddress in bccAddresses)
         {
-            return this;
+            _mailMessage.Bcc.Add(new MailAddress(bccAddress));
         }
 
-        public IEmailFluentInterface To(params string[] toAddresses)
+        return this;
+    }
+
+    public IEmailFluentInterface WithSubject(string subject)
+    {
+        _mailMessage.Subject = subject;
+
+        return this;
+    }
+
+    public IEmailFluentInterface WithBody(string body)
+    {
+        _mailMessage.Body = body;
+
+        return this;
+    }
+
+    public void Send()
+    {
+        // Set up the mail server
+        SmtpClient smtpClient = new("mailservername")
         {
-            foreach (string toAddress in toAddresses)
-            {
-                _mailMessage.To.Add(new MailAddress(toAddress));
-            }
+            Credentials = CredentialCache.DefaultNetworkCredentials,
+            Timeout = 100
+        };
 
-            return this;
-        }
-
-        public IEmailFluentInterface CC(params string[] ccAddresses)
-        {
-            foreach (string ccAddress in ccAddresses)
-            {
-                _mailMessage.CC.Add(new MailAddress(ccAddress));
-            }
-
-            return this;
-        }
-
-        public IEmailFluentInterface BCC(params string[] bccAddresses)
-        {
-            foreach (string bccAddress in bccAddresses)
-            {
-                _mailMessage.Bcc.Add(new MailAddress(bccAddress));
-            }
-
-            return this;
-        }
-
-        public IEmailFluentInterface WithSubject(string subject)
-        {
-            _mailMessage.Subject = subject;
-
-            return this;
-        }
-
-        public IEmailFluentInterface WithBody(string body)
-        {
-            _mailMessage.Body = body;
-
-            return this;
-        }
-
-        public void Send()
-        {
-            // Set up the mail server
-            SmtpClient smtpClient = new("mailservername")
-            {
-                Credentials = CredentialCache.DefaultNetworkCredentials,
-                Timeout = 100
-            };
-
-            // Send the email
-            smtpClient.Send(_mailMessage);
-        }
+        // Send the email
+        smtpClient.Send(_mailMessage);
     }
 }

@@ -1,14 +1,7 @@
-﻿namespace DesignPatterns.Command
-{
-    public class Account
-    {
-        public string OwnerName { get; set; }
-        public decimal Balance { get; set; }
+﻿namespace Command;
 
-        public Account(string ownerName, decimal balance)
-        {
-            OwnerName = ownerName;
-            Balance = balance;
-        }
-    }
+public class Account(string ownerName, decimal balance)
+{
+    public string OwnerName { get; set; } = ownerName;
+    public decimal Balance { get; set; } = balance;
 }

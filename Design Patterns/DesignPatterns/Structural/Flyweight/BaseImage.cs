@@ -1,7 +1,6 @@
-﻿namespace DesignPatterns.Flyweight
+﻿namespace Flyweight;
+
+abstract class BaseImage
 {
-    abstract class BaseImage
-    {
-        public abstract void Display(int x, int y, int width, int height);
-    }
+    public abstract void Display(int x, int y, int width, int height);
 }

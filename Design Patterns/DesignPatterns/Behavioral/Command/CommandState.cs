@@ -1,11 +1,10 @@
-﻿namespace DesignPatterns.Command
+﻿namespace Command;
+
+public enum CommandState
 {
-    public enum CommandState
-    {
-        Unprocessed,
-        ExecuteFailed,
-        ExecuteSucceeded,
-        UndoFailed,
-        UndoSucceeded
-    }
+    Unprocessed,
+    ExecuteFailed,
+    ExecuteSucceeded,
+    UndoFailed,
+    UndoSucceeded
 }
